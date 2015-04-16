@@ -14,9 +14,10 @@ public class CalcScreen extends ActionBarActivity {
     Button bClear,bBack,bOne,bTwo,bThree,bFour,bFive,bSix,bSeven,bEight,bNine,bZero,bDec,
     bEq,bPlus,bMinus,bMult,bDiv;
 
-    boolean add,subtract,mult,div = false;
+    boolean add,subtract,mult,div,decimal = false;
 
-    int value1, value2;
+    double value1, value2;
+    int total;
 
     EditText calcScreen;
 
@@ -66,13 +67,7 @@ public class CalcScreen extends ActionBarActivity {
 
             public void onClick(View v) {
 
-                current = calcScreen.getText().toString();
-
-                if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")||current.equals("0")){
-
-                    calcScreen.setText("");
-                }
-
+                checkField();
                 calcScreen.setText(calcScreen.getText()+"1");
 
             }
@@ -85,12 +80,7 @@ public class CalcScreen extends ActionBarActivity {
 
             public void onClick(View v) {
 
-                current = calcScreen.getText().toString();
-
-                if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")||current.equals("0")){
-
-                    calcScreen.setText("");
-                }
+                checkField();
 
                 calcScreen.setText(calcScreen.getText()+"2");
 
@@ -105,12 +95,7 @@ public class CalcScreen extends ActionBarActivity {
 
             public void onClick(View v) {
 
-                current = calcScreen.getText().toString();
-
-                if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")||current.equals("0")){
-
-                    calcScreen.setText("");
-                }
+                checkField();
 
                 calcScreen.setText(calcScreen.getText()+"3");
 
@@ -124,12 +109,7 @@ public class CalcScreen extends ActionBarActivity {
 
             public void onClick(View v) {
 
-                current = calcScreen.getText().toString();
-
-                if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")||current.equals("0")){
-
-                    calcScreen.setText("");
-                }
+                checkField();
 
                 calcScreen.setText(calcScreen.getText()+"4");
 
@@ -144,12 +124,7 @@ public class CalcScreen extends ActionBarActivity {
 
             public void onClick(View v) {
 
-                current = calcScreen.getText().toString();
-
-                if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")||current.equals("0")){
-
-                    calcScreen.setText("");
-                }
+                checkField();
 
                 calcScreen.setText(calcScreen.getText()+"5");
 
@@ -164,12 +139,7 @@ public class CalcScreen extends ActionBarActivity {
 
             public void onClick(View v) {
 
-                current = calcScreen.getText().toString();
-
-                if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")||current.equals("0")){
-
-                    calcScreen.setText("");
-                }
+                checkField();
 
                 calcScreen.setText(calcScreen.getText()+"6");
 
@@ -183,12 +153,7 @@ public class CalcScreen extends ActionBarActivity {
 
             public void onClick(View v) {
 
-                current = calcScreen.getText().toString();
-
-                if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")||current.equals("0")){
-
-                    calcScreen.setText("");
-                }
+                checkField();
 
                 calcScreen.setText(calcScreen.getText()+"7");
 
@@ -202,12 +167,7 @@ public class CalcScreen extends ActionBarActivity {
 
             public void onClick(View v) {
 
-                current = calcScreen.getText().toString();
-
-                if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")||current.equals("0")){
-
-                    calcScreen.setText("");
-                }
+                checkField();
 
                 calcScreen.setText(calcScreen.getText()+"8");
 
@@ -221,13 +181,7 @@ public class CalcScreen extends ActionBarActivity {
 
             public void onClick(View v) {
 
-                current = calcScreen.getText().toString();
-
-
-                if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")||current.equals("0")){
-
-                    calcScreen.setText("");
-                }
+                checkField();
 
                 calcScreen.setText(calcScreen.getText()+"9");
 
@@ -242,12 +196,7 @@ public class CalcScreen extends ActionBarActivity {
 
             public void onClick(View v) {
 
-                current = calcScreen.getText().toString();
-
-                if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")||current.equals("0")){
-
-                    calcScreen.setText("");
-                }
+                checkField();
 
                 calcScreen.setText(calcScreen.getText()+"0");
 
@@ -262,12 +211,9 @@ public class CalcScreen extends ActionBarActivity {
 
             public void onClick(View v) {
 
-                current = calcScreen.getText().toString();
+                decimal = true;
 
-                if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")){
-
-                    calcScreen.setText("");
-                }
+                checkField();
 
                 calcScreen.setText(calcScreen.getText()+".");
 
@@ -286,8 +232,8 @@ public class CalcScreen extends ActionBarActivity {
 
                 add = true;
 
-                // TODO Auto-generated method stub
-                value1 = Integer.parseInt(calcScreen.getText().toString());
+
+                value1 = Double.parseDouble(calcScreen.getText().toString());
 
                 calcScreen.setText("+");
 
@@ -304,7 +250,7 @@ public class CalcScreen extends ActionBarActivity {
                 subtract = true;
 
                 // TODO Auto-generated method stub
-                value1 = Integer.parseInt(calcScreen.getText().toString());
+                value1 = Double.parseDouble(calcScreen.getText().toString());
 
                 calcScreen.setText("-");
 
@@ -321,7 +267,7 @@ public class CalcScreen extends ActionBarActivity {
                 mult = true;
 
 
-                value1 = Integer.parseInt(calcScreen.getText().toString());
+                value1 = Double.parseDouble(calcScreen.getText().toString());
 
                 calcScreen.setText("X");
 
@@ -341,7 +287,7 @@ public class CalcScreen extends ActionBarActivity {
 
 
 
-                value1 = Integer.parseInt(calcScreen.getText().toString());
+                value1 = Double.parseDouble(calcScreen.getText().toString());
 
                 calcScreen.setText("/");
 
@@ -373,7 +319,7 @@ public class CalcScreen extends ActionBarActivity {
 
             public void onClick(View v) {
 
-                value2 = Integer.parseInt(calcScreen.getText().toString());
+                value2 = Double.parseDouble(calcScreen.getText().toString());
 
                 if(add==true){
                     value1 = value1 + value2;
@@ -395,8 +341,8 @@ public class CalcScreen extends ActionBarActivity {
                     div = false;
                 }
 
-
-                calcScreen.setText(romConversion(value1));
+                total = (int)value1;
+                calcScreen.setText(romConversion(total));
 
 
 
@@ -434,8 +380,35 @@ public class CalcScreen extends ActionBarActivity {
 
     public String romConversion(int num){
 
-        return "XLIV";
+        String temp = String.valueOf(num);
 
 
+
+
+
+
+        return temp;
+
+    }
+
+
+    public void checkField(){
+        current = calcScreen.getText().toString();
+
+        //special check for decimal button b/c we want to put a number like 0.1
+        if(decimal==true){
+            if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")){
+                calcScreen.setText("");
+            }
+        }
+
+        //normal case checking for something in the textfield to replace it
+        else if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")||current.equals("0")){
+
+            calcScreen.setText("");
+        }
+
+        //set decimal back to false
+        decimal = false;
     }
 }
