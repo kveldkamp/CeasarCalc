@@ -22,6 +22,19 @@ public class CalcScreen extends ActionBarActivity {
     EditText calcScreen;
 
     String current = "";
+    String M = "M";
+    String CM = "CM";
+    String X = "X";
+    String V = "V";
+    String L = "L";
+    String D = "D";
+    String C = "C";
+    String CD = "CD";
+    String XC = "XC";
+    String XL = "XL";
+    String I = "I";
+    String IX = "IX";
+    String IV = "IV";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -380,11 +393,78 @@ public class CalcScreen extends ActionBarActivity {
 
     public String romConversion(int num){
 
-        String temp = String.valueOf(num);
+        String temp="";
 
 
+        if(num>4999){
+            temp = "Error";
+            return temp;
+        }
 
+        while(num/1000>=1){
+            temp += M;
+            num -=1000;
+        }
 
+        if(num/900>=1){
+
+            temp += CM;
+            num -= 900;
+        }
+
+        if(num/500>=1){
+            temp +=D;
+            num -= 500;
+        }
+        else if(num/400>=1){
+            temp += CD;
+            num -=400;
+        }
+
+        while(num/100>=1){
+            temp+=C;
+            num -=100;
+        }
+
+        if(num/90>=1){
+            temp += XC;
+            num-=90;
+        }
+
+        if(num/50>=1){
+            temp += L;
+            num-=50;
+        }
+
+        else if(num/40>=1){
+            temp+= XL;
+            num -=40;
+        }
+
+        while(num/10>=1){
+            temp +=X;
+            num -=10;
+        }
+
+        if(num/9>=1){
+            temp+= IX;
+            num -=9;
+        }
+
+        if(num/5>=1){
+            temp +=V;
+            num -=5;
+        }
+
+        else if(num/4>=1){
+            temp += IV;
+            num -=4;
+        }
+
+        while(num/1>=1){
+            temp+=I;
+            num-=1;
+        }
 
 
         return temp;
