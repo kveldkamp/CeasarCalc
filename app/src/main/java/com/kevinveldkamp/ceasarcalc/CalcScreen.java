@@ -14,7 +14,7 @@ public class CalcScreen extends ActionBarActivity {
     Button bClear,bBack,bOne,bTwo,bThree,bFour,bFive,bSix,bSeven,bEight,bNine,bZero,bDec,
     bEq,bPlus,bMinus,bMult,bDiv;
 
-    boolean add,subtract,mult,div,decimal = false;
+    boolean add,subtract,mult,div,decimal,calculated = false;
 
     double value1, value2;
     int total;
@@ -357,7 +357,7 @@ public class CalcScreen extends ActionBarActivity {
                 total = (int)value1;
                 calcScreen.setText(romConversion(total));
 
-
+                calculated = true;
 
 
 
@@ -392,6 +392,10 @@ public class CalcScreen extends ActionBarActivity {
 
 
     public String romConversion(int num){
+
+        //if statements to convert int to roman numeral
+
+        //could be optimized
 
         String temp="";
 
@@ -476,19 +480,21 @@ public class CalcScreen extends ActionBarActivity {
         current = calcScreen.getText().toString();
 
         //special check for decimal button b/c we want to put a number like 0.1
+
         if(decimal==true){
-            if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")){
+            if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")||calculated){
                 calcScreen.setText("");
             }
         }
 
         //normal case checking for something in the textfield to replace it
-        else if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")||current.equals("0")){
+        else if(current.equals("+")||current.equals("-")||current.equals("X")||current.equals("/")||current.equals("0")||calculated){
 
             calcScreen.setText("");
         }
 
         //set decimal back to false
+        calculated = false;
         decimal = false;
     }
 }
