@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CeasarCalc</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="Welcome">""</string>
+    <string name="default_numeral">XLIV</string>
+    <string name="action_settings">Settings</string>
+</resources>
