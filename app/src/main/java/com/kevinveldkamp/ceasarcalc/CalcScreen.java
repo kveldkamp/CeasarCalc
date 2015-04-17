@@ -1,7 +1,10 @@
 package com.kevinveldkamp.ceasarcalc;
 
+import android.content.Intent;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.ShareActionProvider;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +23,10 @@ public class CalcScreen extends ActionBarActivity {
     int total;
 
     EditText calcScreen;
+    ShareActionProvider mShareActionProvider;
 
     String current = "";
+    String lastCalculation="X";
     String M = "M";
     String CM = "CM";
     String X = "X";
@@ -317,7 +322,7 @@ public class CalcScreen extends ActionBarActivity {
 
             public void onClick(View v) {
 
-                // TODO Auto-generated method stub
+
 
                 calcScreen.setText("0");
 
@@ -355,10 +360,13 @@ public class CalcScreen extends ActionBarActivity {
                 }
 
                 total = (int)value1;
-                calcScreen.setText(romConversion(total));
+
+                lastCalculation = romConversion(total);
+                calcScreen.setText(lastCalculation);
 
                 calculated = true;
 
+                setShareIntent();
 
 
             }
@@ -372,23 +380,40 @@ public class CalcScreen extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_calc_screen, menu);
+
+        // Access the Share Item defined in menu XML
+        MenuItem shareItem = menu.findItem(R.id.menu_item_share);
+
+        // Access the object responsible for
+        // putting together the sharing submenu
+        if (shareItem != null) {
+            mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(shareItem);
+        }
+
+        // Create an Intent to share your content
+
+
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    private void setShareIntent() {
+
+        if (mShareActionProvider != null) {
+
+            // create an Intent with the contents of the TextView
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Roman Numeral calculation");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, "Just calculated " +  lastCalculation + " on CeasarCalc!");
+
+            // Make sure the provider knows
+            // it should work with that Intent
+            mShareActionProvider.setShareIntent(shareIntent);
         }
-
-        return super.onOptionsItemSelected(item);
     }
+
+
 
 
     public String romConversion(int num){
