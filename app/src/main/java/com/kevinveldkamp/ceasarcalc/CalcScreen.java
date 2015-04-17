@@ -25,7 +25,7 @@ public class CalcScreen extends ActionBarActivity {
 
 
     //Deque to hold all recent values locally
-    Deque<String> lastValues = new ArrayDeque<String>();
+    protected Deque<String> lastValues = new ArrayDeque<String>();
 
     Button bClear,bBack,bOne,bTwo,bThree,bFour,bFive,bSix,bSeven,bEight,bNine,bZero,bDec,
     bEq,bPlus,bMinus,bMult,bDiv;
@@ -403,7 +403,7 @@ public class CalcScreen extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_calc_screen, menu);
 
-        // Access the Share Item defined in menu XML
+
         MenuItem shareItem = menu.findItem(R.id.menu_item_share);
 
         // Access the object responsible for
@@ -463,7 +463,7 @@ public class CalcScreen extends ActionBarActivity {
 
 
 
-    protected String romConversion(int num){
+    public String romConversion(int num){
 
         //if statements to convert int to roman numeral
 
@@ -570,8 +570,8 @@ public class CalcScreen extends ActionBarActivity {
         decimal = false;
     }
 
-    protected void updateValues(String numeral){
-        if(lastValues.size()==5){
+    public void updateValues(String numeral){
+        if(lastValues.size()>4){
             lastValues.removeFirst();
             lastValues.push(numeral);
         }
@@ -581,7 +581,18 @@ public class CalcScreen extends ActionBarActivity {
 
     }
 
-    protected void getRecentCalcs(){
+
+    public String getCurrentScreen(){
+
+        return calcScreen.getText().toString();
+    }
+
+    public Deque<String> getCurrentValues(){
+        return lastValues;
+    }
+
+    public void getRecentCalcs(){
+
         SharedPreferences numerals = getSharedPreferences(LAST_CALCS,0);
 
         //read in all values
